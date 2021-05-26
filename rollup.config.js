@@ -1,7 +1,7 @@
 import merge from 'deepmerge';
 // use createSpaConfig for bundling a Single Page App
 import { createSpaConfig } from '@open-wc/building-rollup';
-import copy from 'rollup-plugin-copy';
+// import copy from 'rollup-plugin-copy';
 // import postcss from 'rollup-plugin-postcss'
 // import tailwindcss from 'tailwindcss';
 
@@ -31,11 +31,11 @@ export default merge(baseConfig, {
   // any <script type="module"> inside will be bundled by rollup
   input: './index.html',
   plugins: [
-      copy({
-          targets: [
-              {src: 'out-tsc/src/styles.css', dest: 'dist/src'}
-          ]
-      }) 
+    //   copy({
+    //       targets: [
+    //           {src: 'out-tsc/src/styles.css', dest: 'dist/src'}
+    //       ]
+    //   }) 
  
   ]
 
