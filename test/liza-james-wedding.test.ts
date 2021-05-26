@@ -1,6 +1,7 @@
+/* eslint-disable import/no-duplicates */
 import { html, fixture, expect } from '@open-wc/testing';
 
-import { LizaJamesWedding } from '../src/LizaJamesWedding.js';
+import { LizaJamesWedding } from '../src/liza-james-wedding.js';
 import '../src/liza-james-wedding.js';
 
 describe('LizaJamesWedding', () => {
