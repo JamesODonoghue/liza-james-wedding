@@ -22,7 +22,7 @@ export class Home extends LitElement {
         this.url = `${baseUrl}?text=${eventTitle}&dates=${dates}&location=${location}`;
 
         this.url =
-            'https://calendar.google.com/event?action=TEMPLATE&tmeid=NWtvNzFsaWozaW1oY2U2NnVpbnExc2RpMGcgam9kb25vZ2gxQG0&tmsrc=jodonogh1%40gmail.com';
+            'https://calendar.google.com/event?action=TEMPLATE&tmeid=MW5qMjFyanVwMnFldHNqaTN1NjVoYjlmc2ogam9kb25vZ2gxQG0&tmsrc=jodonogh1%40gmail.com';
     }
 
     render() {
