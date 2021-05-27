@@ -8,6 +8,18 @@ export class Venue extends LitElement {
     }
 
     render() {
-        return html` <div>Hello from venue</div> `;
+        return html`
+            <div>
+                <div class="text-3xl mb-4 text-secondary-800">
+                    Living History Farms
+                </div>
+                <p class="font-body max-w-xl">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Dignissimos velit praesentium aliquid ipsam blanditiis fugit
+                    optio, nam aspernatur veritatis aut enim eos quae tempora
+                    temporibus earum repellendus sint maxime perspiciatis!
+                </p>
+            </div>
+        `;
     }
 }

@@ -1,29 +1,30 @@
-const colors = require('tailwindcss/colors')
+const colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-      fontFamily: {
-          'display': ['Roca One']
-      },
-       colors: {
-      primary: colors.indigo,
-      secondary: colors.yellow,
-      neutral: colors.gray,
+    purge: [],
+    darkMode: false, // or 'media' or 'class'
+    theme: {
+        fontFamily: {
+            display: ['Roca One'],
+            body: ['ui-sans'],
+        },
+        colors: {
+            primary: colors.teal,
+            secondary: colors.lightBlue,
+            neutral: colors.gray,
+        },
+        extend: {
+            padding: {
+                '1/3': '33.3333%',
+                '2/3': '66.6667%',
+            },
+        },
     },
-    extend: {
-        padding: {
-            '1/3': '33.3333%',
-            '2/3': '66.6667%'
-        }
+    variants: {
+        extend: {},
     },
-  },
-  variants: {
-    extend: {},
-  },
-  plugins: [
-      // eslint-disable-next-line global-require
-      require('@tailwindcss/aspect-ratio')
-  ],
-}
+    plugins: [
+        // eslint-disable-next-line global-require
+        require('@tailwindcss/aspect-ratio'),
+    ],
+};

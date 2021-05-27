@@ -7,7 +7,11 @@ import './lj-hotel.js';
 
 @customElement('liza-james-wedding')
 export class LizaJamesWedding extends LitElement {
+    @property({ type: Object }) router!: Router;
+
     @property({ type: String }) title = 'My app';
+
+    @property({ type: String }) activeItem = 'home';
 
     @query('#outlet') outlet!: HTMLElement;
 
@@ -58,54 +62,58 @@ export class LizaJamesWedding extends LitElement {
         return this;
     }
 
-    firstUpdated() {
-        const router = new Router(this.outlet);
+    connectedCallback() {
+        // eslint-disable-next-line wc/guard-super-call
+        super.connectedCallback();
+        window.addEventListener(
+            'vaadin-router-location-changed',
+            this.handleLocationChanged
+        );
+    }
 
-        router.setRoutes([
+    firstUpdated() {
+        this.router = new Router(this.outlet);
+
+        this.router.setRoutes([
             {
                 path: '/',
+                name: 'home',
                 component: 'lj-home',
             },
             {
                 path: '/venue',
+                name: 'venue',
                 component: 'lj-venue',
             },
             {
                 path: '/hotel',
+                name: 'hotel',
                 component: 'lj-hotel',
             },
         ]);
     }
 
+    handleLocationChanged = () => {
+        this.activeItem = this.router?.location.route?.name as string;
+    };
+
     render() {
         return html`
             <div class="font-display">
-                <div class="max-w-5xl mx-auto p-8">
-                    <div class="m-28 text-center font-bold">
-                        <h1 class="text-8xl text-primary-800 mb-8">
+                <div class="max-w-4xl mx-auto p-4">
+                    <div class="mt-16 mb-16 text-center font-semibold">
+                        <h1 class="text-5xl sm:text-7xl text-primary-800 mb-4">
                             Liza & James
                         </h1>
-                        <div class="text-3xl text-neutral-800">
-                            <div>June 25, 2022</div>
-                            <div>Living History Farms, Iowa</div>
-                        </div>
-                    </div>
-                    <div class="grid grid-flow-col text-center mb-28 text-xl">
-                        <div>
-                            <a class="hover:text-primary-600" href="/">Home</a>
-                        </div>
-                        <div>
-                            <a class="hover:text-primary-600" href="/venue"
-                                >Venue</a
-                            >
-                        </div>
-                        <div>
-                            <a class="hover:text-primary-600" href="/hotel"
-                                >Hotel</a
-                            >
-                        </div>
-                    </div>
+                        <div class="text-xl text-secondary-900">
+                            <div class="font-semibold mb-2">June 25, 2022</div>
 
+                            <div class="font-extralight">
+                                <div>Living History Farms</div>
+                                <div>Urbandale, Iowa</div>
+                            </div>
+                        </div>
+                    </div>
                     <div id="outlet"></div>
                 </div>
             </div>
