@@ -6364,7 +6364,7 @@ video {
 }
 
 .font-body {
-  font-family: ui-sans;
+  font-family: Euclid Circular A;
 }
 
 .font-thin {
@@ -22621,11 +22621,6 @@ video {
   --tw-backdrop-sepia: sepia(100%);
 }
 
-.font-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -28440,7 +28435,7 @@ video {
   }
 
   .sm\:font-body {
-    font-family: ui-sans;
+    font-family: Euclid Circular A;
   }
 
   .sm\:font-thin {
@@ -50341,7 +50336,7 @@ video {
   }
 
   .md\:font-body {
-    font-family: ui-sans;
+    font-family: Euclid Circular A;
   }
 
   .md\:font-thin {
@@ -72242,7 +72237,7 @@ video {
   }
 
   .lg\:font-body {
-    font-family: ui-sans;
+    font-family: Euclid Circular A;
   }
 
   .lg\:font-thin {
@@ -94143,7 +94138,7 @@ video {
   }
 
   .xl\:font-body {
-    font-family: ui-sans;
+    font-family: Euclid Circular A;
   }
 
   .xl\:font-thin {
@@ -116044,7 +116039,7 @@ video {
   }
 
   .\32xl\:font-body {
-    font-family: ui-sans;
+    font-family: Euclid Circular A;
   }
 
   .\32xl\:font-thin {

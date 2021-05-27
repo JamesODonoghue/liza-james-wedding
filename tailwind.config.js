@@ -6,7 +6,7 @@ module.exports = {
     theme: {
         fontFamily: {
             display: ['Roca One'],
-            body: ['ui-sans'],
+            body: ['Euclid Circular A'],
         },
         colors: {
             primary: colors.teal,
