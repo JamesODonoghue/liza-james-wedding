@@ -20,6 +20,9 @@ export class Home extends LitElement {
         const dates = '20210625/20210626Z';
 
         this.url = `${baseUrl}?text=${eventTitle}&dates=${dates}&location=${location}`;
+
+        this.url =
+            'https://calendar.google.com/event?action=TEMPLATE&tmeid=NWtvNzFsaWozaW1oY2U2NnVpbnExc2RpMGcgam9kb25vZ2gxQG0&tmsrc=jodonogh1%40gmail.com';
     }
 
     render() {
