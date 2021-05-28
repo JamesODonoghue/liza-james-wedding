@@ -100,7 +100,7 @@ export class LizaJamesWedding extends LitElement {
     render() {
         return html`
             <div class="font-display">
-                <div class="max-w-4xl mx-auto p-4">
+                <div class="max-w-6xl mx-auto p-4">
                     <div class="mt-16 mb-16 text-center font-semibold">
                         <h1 class="text-5xl sm:text-7xl text-primary-800 mb-4">
                             Liza & James
