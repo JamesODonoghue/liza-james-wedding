@@ -89,8 +89,8 @@ export class Home extends LitElement {
                     Where am I staying?
                 </div>
                 <div class="mb-12">
-                    <div class="flex items-center mb-4">
-                        <div class="mr-8 text-xl">
+                    <div class="sm:flex items-center mb-4">
+                        <div class="sm:mr-8 text-xl">
                             <a
                                 class="text-xl text-secondary-800 hover:text-secondary-600 inline-flex items-center"
                                 href="https://hotelrenovo.com/"
@@ -113,12 +113,12 @@ export class Home extends LitElement {
                             </a>
                         </div>
                         <div
-                            class="bg-secondary-200 text-secondary-800 px-2 rounded text-sm mr-4 font-body"
+                            class="bg-secondary-200 text-secondary-800 px-2 rounded text-sm sm:mr-4 font-body sm:block inline-flex"
                         >
                             Pool
                         </div>
                         <div
-                            class="bg-secondary-200 text-secondary-800 px-2 rounded text-sm font-body"
+                            class="bg-secondary-200 text-secondary-800 px-2 rounded text-sm font-body sm:block inline-flex"
                         >
                             Fitness Center
                         </div>
@@ -132,7 +132,8 @@ export class Home extends LitElement {
                             5 minute walk to Living History Farms
                         </p>
                         <p class="mb-2 font-medium text-primary-800">
-                            Call and ask for the Liza and James Wedding block.
+                            Call and ask for the Kroeschell and O'Donoghue
+                            Wedding block.
                         </p>
                     </div>
                 </div>
@@ -185,8 +186,8 @@ export class Home extends LitElement {
                 </div>
                 <div class="mb-4">
                     <a
-                        class="text-xl text-secondary-800 hover:text-secondary-600 inline-flex items-center"
-                        href="https://www.google.com/maps/dir/Des+Moines+International+Airport,+Fleur+Drive,+Des+Moines,+IA/Living+History+Farms,+11121+Hickman+Rd,+Urbandale,+IA+50322/@41.5652879,-93.7451459,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x87eea1f80909570b:0x80179b8d59f567a!2m2!1d-93.6587958!2d41.5341333!1m5!1m1!1s0x87ec20ccf91cbf7d:0x37ed847db7aac69a!2m2!1d-93.7705303!2d41.6169508!3e0"
+                        class="sm:text-xl text-secondary-800 hover:text-secondary-600 inline-flex items-center"
+                        href="https://www.google.com/maps/dir/Des+Moines+International+Airport+(DSM),+5800+Fleur+Dr,+Des+Moines,+IA+50321/Hotel+Renovo,+11167+Hickman+Rd,+Urbandale,+IA+50322/@41.5648848,-93.7800806,12z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x87eea1f80909570b:0x80179b8d59f567a!2m2!1d-93.6587958!2d41.5341333!1m5!1m1!1s0x87ec20cd8ef645ef:0x531f17fd34b8ee38!2m2!1d-93.7734688!2d41.6160864!3e0"
                         ><span class="h-6 mr-2"
                             >DSM Airport to Hotel Renovo</span
                         >
@@ -209,9 +210,9 @@ export class Home extends LitElement {
                 </div>
                 <div>
                     <a
-                        class="text-xl text-secondary-800 hover:text-secondary-600 inline-flex items-center"
+                        class="sm:text-xl text-secondary-800 hover:text-secondary-600 inline-flex items-center"
                         href="https://www.google.com/maps/dir/Des+Moines+International+Airport,+Fleur+Drive,+Des+Moines,+IA/Living+History+Farms,+11121+Hickman+Rd,+Urbandale,+IA+50322/@41.5652879,-93.7451459,13z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x87eea1f80909570b:0x80179b8d59f567a!2m2!1d-93.6587958!2d41.5341333!1m5!1m1!1s0x87ec20ccf91cbf7d:0x37ed847db7aac69a!2m2!1d-93.7705303!2d41.6169508!3e0"
-                        ><span class="h-6 mr-2"
+                        ><span class="sm:h-6 mr-2"
                             >DSM Airport to Living History Farms</span
                         >
 
