@@ -2,16 +2,16 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
     purge: [],
-    darkMode: false, // or 'media' or 'class'
+    darkMode: 'class', // or 'media' or 'class'
     theme: {
         fontFamily: {
-            display: ['Roca One'],
+            display: ['Roca Two'],
             body: ['Euclid Circular A'],
         },
         colors: {
-            primary: colors.teal,
-            secondary: colors.lightBlue,
-            neutral: colors.gray,
+            primary: colors.emerald,
+            secondary: colors.warmGray,
+            neutral: colors.coolGray,
         },
         extend: {
             padding: {
@@ -21,7 +21,9 @@ module.exports = {
         },
     },
     variants: {
-        extend: {},
+        extend: {
+            backgroundColor: ['active', 'dark', 'hover'],
+        },
     },
     plugins: [
         // eslint-disable-next-line global-require
