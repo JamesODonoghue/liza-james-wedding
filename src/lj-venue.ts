@@ -9,7 +9,7 @@ export class Venue extends LitElement {
 
     render() {
         return html`
-            <div class="h-full sm:py-64 py-40">
+            <div class="sm:py-64 my-40">
                 <div class="max-w-3xl mx-auto px-8">
                     <div>
                         <div class="text-5xl sm:text-8xl font-semibold mb-4">
@@ -35,7 +35,7 @@ export class Venue extends LitElement {
                     </div>
                 </div>
             </div>
-            <div class="h-full sm:pt-64 py-64">
+            <div class="sm:pt-64 py-64">
                 <div class="max-w-3xl mx-auto px-8">
                     <div class="mb-32">
                         <div class="sm:flex items-center mb-12">
