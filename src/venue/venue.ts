@@ -9,29 +9,25 @@ export class Venue extends LitElement {
 
     render() {
         return html`
-            <div class="sm:py-64 my-40">
-                <div class="max-w-3xl mx-auto px-8">
-                    <div>
-                        <div class="text-5xl sm:text-8xl font-semibold mb-4">
-                            <a
-                                class="text-primary-800 hover:text-primary-600 dark:hover:text-primary-600 dark:text-primary-300 items-center inline-flex transition"
-                                href="https://www.lhf.org/"
-                            >
-                                <span class="mr-2">Living History Farms</span>
-                            </a>
-                        </div>
-                        <div class="mb-8">
-                            11121 Hickman Rd, Urbandale, IA 50322
-                        </div>
-                        <div class="mb-4 max-w-xl">
-                            <p>
-                                Ceremony takes place at the Church of the land.
-                            </p>
-                            <p>
-                                Reception afterwards at an authentic 19th
-                                century barn!
-                            </p>
-                        </div>
+            <div class="max-w-3xl mx-auto px-8">
+                <div>
+                    <div class="text-5xl sm:text-8xl font-semibold mb-4">
+                        <a
+                            class="text-primary-800 hover:text-primary-600 dark:hover:text-primary-600 dark:text-primary-300 items-center inline-flex transition"
+                            href="https://www.lhf.org/"
+                        >
+                            <span class="mr-2">Living History Farms</span>
+                        </a>
+                    </div>
+                    <div class="mb-8">
+                        11121 Hickman Rd, Urbandale, IA 50322
+                    </div>
+                    <div class="mb-4 max-w-xl">
+                        <p>Ceremony takes place at the Church of the land.</p>
+                        <p>
+                            Reception afterwards at an authentic 19th century
+                            barn!
+                        </p>
                     </div>
                 </div>
             </div>
@@ -60,7 +56,7 @@ export class Venue extends LitElement {
                             </div>
                         </div>
                         <div class="font-body max-w-xl">
-                            <p class="mb-2 text-xl mb-8">
+                            <p class="mb-2 text-xl">
                                 Ask for the Liza and James Wedding block.
                             </p>
                             <p class="mb-2">

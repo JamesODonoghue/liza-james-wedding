@@ -1,17 +1,17 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-    purge: [],
-    darkMode: 'class', // or 'media' or 'class'
+    mode: 'jit',
+    purge: ['./src/**/*.ts'],
     theme: {
         fontFamily: {
             display: ['Roca Two'],
             body: ['Euclid Circular A'],
         },
         colors: {
-            primary: colors.emerald,
+            primary: colors.coolGray,
             secondary: colors.warmGray,
-            neutral: colors.coolGray,
+            neutral: colors.warmGray,
         },
         extend: {
             padding: {
@@ -20,13 +20,10 @@ module.exports = {
             },
         },
     },
-    variants: {
-        extend: {
-            backgroundColor: ['active', 'dark', 'hover'],
-        },
-    },
     plugins: [
         // eslint-disable-next-line global-require
         require('@tailwindcss/aspect-ratio'),
+        // eslint-disable-next-line global-require
+        require('@tailwindcss/forms'),
     ],
 };

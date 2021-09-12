@@ -1,29 +1,29 @@
 // import { playwrightLauncher } from '@web/test-runner-playwright';
 
 export default /** @type {import("@web/test-runner").TestRunnerConfig} */ ({
-  files: 'out-tsc/test/**/*.test.js',
-  nodeResolve: true,
+    nodeResolve: true,
+    files: 'out-tsc/**/*.test.js',
 
-  /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
-  // esbuildTarget: 'auto',
+    /** Compile JS for older browsers. Requires @web/dev-server-esbuild plugin */
+    esbuildTarget: 'auto',
 
-  /** Confgure bare import resolve plugin */
-  // nodeResolve: {
-  //   exportConditions: ['browser', 'development']
-  // },
+    /** Confgure bare import resolve plugin */
+    // nodeResolve: {
+    //   exportConditions: ['browser', 'development']
+    // },
 
-  /** Amount of browsers to run concurrently */
-  // concurrentBrowsers: 2,
+    /** Amount of browsers to run concurrently */
+    // concurrentBrowsers: 2,
 
-  /** Amount of test files per browser to test concurrently */
-  // concurrency: 1,
+    /** Amount of test files per browser to test concurrently */
+    // concurrency: 1,
 
-  /** Browsers to run tests on */
-  // browsers: [
-  //   playwrightLauncher({ product: 'chromium' }),
-  //   playwrightLauncher({ product: 'firefox' }),
-  //   playwrightLauncher({ product: 'webkit' }),
-  // ],
+    /** Browsers to run tests on */
+    // browsers: [
+    //   playwrightLauncher({ product: 'chromium' }),
+    //   playwrightLauncher({ product: 'firefox' }),
+    //   playwrightLauncher({ product: 'webkit' }),
+    // ],
 
-  // See documentation for all available options
+    // See documentation for all available options
 });
