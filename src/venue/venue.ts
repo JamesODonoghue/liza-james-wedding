@@ -31,7 +31,7 @@ export class Venue extends LitElement {
                     </div>
                 </div>
             </div>
-            <div class="sm:pt-36 pt-16">
+            <div class="py-36">
                 <div class="max-w-3xl mx-auto px-8">
                     <div class="mb-32">
                         <div class="sm:flex items-center mb-12">
