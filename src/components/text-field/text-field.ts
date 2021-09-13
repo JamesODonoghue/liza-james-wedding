@@ -11,6 +11,8 @@ export class TextField extends LitElement {
 
     @property({ type: Boolean }) required = false;
 
+    @property({ type: Boolean }) disabled = false;
+
     createRenderRoot() {
         return this;
     }
@@ -18,10 +20,11 @@ export class TextField extends LitElement {
     render() {
         return html`
             <input
-                class="bg-neutral-50 border-neutral-300 rounded w-full leading-8"
+                class="bg-neutral-50 border-neutral-300 rounded w-full leading-8 disabled:opacity-30 invalid:required:border-red-500"
                 type=${this.inputType}
                 name=${this.name}
                 ?required=${this.required}
+                ?disabled=${this.disabled}
                 .value=${this.value}
             />
         `;
