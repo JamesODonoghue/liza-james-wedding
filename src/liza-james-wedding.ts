@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import './venue/venue.js';
 import './rsvp/rsvp.js';
 
@@ -13,6 +13,8 @@ export class LizaJamesWedding extends LitElement {
 
     @property() url = '';
 
+    @state() isRsvp = false;
+
     createRenderRoot() {
         return this;
     }
@@ -20,6 +22,11 @@ export class LizaJamesWedding extends LitElement {
     connectedCallback() {
         // eslint-disable-next-line wc/guard-super-call
         super.connectedCallback();
+
+        const params = new URLSearchParams(window.location.search);
+        const rsvpParam = params.get('rsvp');
+        this.isRsvp = !!rsvpParam;
+
         this.url =
             'https://calendar.google.com/event?action=TEMPLATE&tmeid=MW5qMjFyanVwMnFldHNqaTN1NjVoYjlmc2ogam9kb25vZ2gxQG0&tmsrc=jodonogh1%40gmail.com';
     }
@@ -60,7 +67,7 @@ export class LizaJamesWedding extends LitElement {
                             </div>
                         </div>
                     </div>
-                    <lj-rsvp></lj-rsvp>
+                    ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
                     <lj-venue></lj-venue>
                 </div>
             </div>

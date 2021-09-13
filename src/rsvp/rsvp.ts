@@ -2,7 +2,6 @@
 /* eslint-disable no-shadow */
 import { html, LitElement } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { v4 as uuidv4 } from 'uuid';
 import { api } from '../utils/api.js';
 
 import '../components/text-field/text-field.js';
@@ -95,23 +94,28 @@ export class Rsvp extends LitElement {
 
     async postForm() {
         this.formStatus = FormStatus.PENDING;
-        const id = this.guestId || uuidv4();
         const request = {
-            Id: id,
+            Id: this.guestId,
             FirstName: this.firstName,
             LastName: this.lastName,
             Email: this.email,
             Rsvp: this.rsvp,
             Guests: this.guests,
+            Artist: this.artist,
+            Track: this.track,
         };
 
         try {
-            const response = await api({ body: request });
-            const parsed = JSON.parse(response);
-            localStorage.setItem('lizaJamesGuestId', parsed.Id);
-            localStorage.setItem('lizaJamesGuestFirstName', parsed.FirstName);
-            localStorage.setItem('lizaJamesGuestLastName', parsed.LastName);
-            localStorage.setItem('lizaJamesGuestRsvp', parsed.Rsvp);
+            const { Id, FirstName, LastName, Rsvp, Artist, Track } = await api({
+                body: request,
+            });
+
+            localStorage.setItem('lizaJamesGuestId', Id);
+            localStorage.setItem('lizaJamesGuestFirstName', FirstName);
+            localStorage.setItem('lizaJamesGuestLastName', LastName);
+            localStorage.setItem('lizaJamesGuestRsvp', Rsvp);
+            localStorage.setItem('lizaJamesGuestArtist', Artist);
+            localStorage.setItem('lizaJamesGuestTrack', Track);
             this.formStatus = FormStatus.SUCCESS;
         } catch (e) {
             this.formStatus = FormStatus.FAIL;
@@ -123,6 +127,8 @@ export class Rsvp extends LitElement {
     }
 
     handleRemoveGuest(e: any) {
+        e.preventDefault();
+        console.log('event', e.target.key);
         this.guests = [
             ...this.guests.slice(0, e.target?.key),
             ...this.guests.slice(e.target?.key + 1),
@@ -143,8 +149,8 @@ export class Rsvp extends LitElement {
 
     renderNameSection() {
         return html`
-            <div class="mb-8 flex items-center">
-                <div class="mr-8 w-full">
+            <div class="sm:flex items-center mb-8">
+                <div class="mr-8 w-full mb-8 sm:mb-0">
                     <div class="mb-2">
                         <label>First Name</label>
                     </div>
@@ -215,6 +221,10 @@ export class Rsvp extends LitElement {
         `;
     }
 
+    handleIconClick(e: Event) {
+        e.preventDefault();
+    }
+
     renderGuestSection({ key, name }: { key: number; name: string }) {
         return html`
             <div class="mb-12 flex items-end">
@@ -232,9 +242,28 @@ export class Rsvp extends LitElement {
                     <button
                         .key=${key}
                         @click=${this.handleRemoveGuest}
-                        class="tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 px-12 py-3 rounded w-full text-center transition"
+                        class="hidden sm:block tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 px-8 py-3 rounded w-full text-center transition"
                     >
                         Remove
+                    </button>
+                    <button
+                        .key=${key}
+                        @click=${this.handleRemoveGuest}
+                        class="sm:hidden tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 p-2 rounded text-center transition"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 0 24 24"
+                            width="24px"
+                            fill="#000000"
+                            class="pointer-events-none"
+                        >
+                            <path d="M0 0h24v24H0V0z" fill="none" />
+                            <path
+                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+                            />
+                        </svg>
                     </button>
                 </div>
             </div>
@@ -247,8 +276,8 @@ export class Rsvp extends LitElement {
 
     renderMainButtons() {
         return html`
-            <div class="flex items-center w-full">
-                <div class="w-full mr-4">
+            <div class="sm:flex items-center w-full mt-12">
+                <div class="w-full mr-8 mb-4 sm:mb-0">
                     <button
                         ?disabled=${!this.firstName ||
                         !this.lastName ||
@@ -275,7 +304,6 @@ export class Rsvp extends LitElement {
     }
 
     renderProgressSpinner() {
-        console.log(this);
         return html`
             <div class="py-16 text-center">
                 <mwc-circular-progress indeterminate></mwc-circular-progress>
@@ -284,7 +312,6 @@ export class Rsvp extends LitElement {
     }
 
     renderCompleteSubmit() {
-        console.log(this);
         return html`
             <div class="max-w-md mx-auto py-16">
                 <div class="text-xl mb-8">
@@ -305,15 +332,57 @@ export class Rsvp extends LitElement {
         `;
     }
 
+    renderDanceSongSection() {
+        return html`
+            <div>
+                <div class="text-xl font-semibold mb-8">
+                    What song will get you on the dance floor?
+                </div>
+                <div class="mb-8 sm:flex items-center">
+                    <div class="mr-8 w-full mb-8 sm:mb-0">
+                        <div class="mb-2">
+                            <label>Artist</label>
+                        </div>
+
+                        <lj-textfield
+                            inputType="text"
+                            name="artist"
+                            .value=${this.artist}
+                        ></lj-textfield>
+                    </div>
+                    <div class="w-full">
+                        <div class="mb-2">
+                            <label>Track</label>
+                        </div>
+
+                        <lj-textfield
+                            inputType="text"
+                            name="track"
+                            .value=${this.track}
+                        ></lj-textfield>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
     render() {
         return html`
-            <div class="sm:py-64 my-40">
+            <div class="sm:py-32 pt-16">
                 <div class="max-w-3xl mx-auto px-8">
                     <div class="text-5xl sm:text-8xl font-semibold mb-8">
                         <div>RSVP</div>
                     </div>
                     <div @input=${this.handleInput}>
-                        <button @click=${this.handleClear}>Clear</button>
+                        <div class="flex items-center justify-end w-full">
+                            <button
+                                @click=${this.handleClear}
+                                class="tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 px-8 py-3 rounded text-center transition"
+                            >
+                                Clear
+                            </button>
+                        </div>
+
                         ${this.formStatus === FormStatus.PENDING
                             ? this.renderProgressSpinner()
                             : ''}
@@ -328,6 +397,7 @@ export class Rsvp extends LitElement {
                                       ${this.renderRsvpSection()}
                                       ${this.rsvp === 'ACCEPT'
                                           ? html`
+                                                ${this.renderDanceSongSection()}
                                                 ${this.guests.map(
                                                     ({ name }, key) =>
                                                         this.renderGuestSection(
