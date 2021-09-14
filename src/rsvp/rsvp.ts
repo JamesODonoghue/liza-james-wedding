@@ -49,6 +49,12 @@ export class Rsvp extends LitElement {
         return this;
     }
 
+    firstUpdated() {
+        if (this.isExistingGuest()) {
+            this.formStatus = FormStatus.SUCCESS;
+        }
+    }
+
     updated(_changedProps: Map<string | number | symbol, unknown>) {
         if (_changedProps.has('formStatus')) {
             this.handleFormStatusUpdated();
@@ -66,6 +72,10 @@ export class Rsvp extends LitElement {
         this.guestId = localStorage.getItem('lizaJamesGuestId') ?? '';
         this.firstName = localStorage.getItem('lizaJamesGuestFirstName') ?? '';
         this.lastName = localStorage.getItem('lizaJamesGuestLastName') ?? '';
+    }
+
+    isExistingGuestUser() {
+        return localStorage.getItem('lizaJamesGuestId');
     }
 
     handleInput(e: Event) {
