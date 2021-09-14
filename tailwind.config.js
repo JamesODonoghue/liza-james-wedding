@@ -13,6 +13,8 @@ module.exports = {
             secondary: colors.warmGray,
             neutral: colors.warmGray,
             error: colors.red,
+            success: colors.teal,
+            blue: colors.blue,
         },
         extend: {
             padding: {

@@ -1,10 +1,15 @@
 import { LitElement, html } from 'lit';
+import { Router } from '@vaadin/router';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import './venue/venue.js';
 import './rsvp/rsvp.js';
+import '@material/mwc-tab-bar';
+import '@material/mwc-tab';
 
 @customElement('liza-james-wedding')
 export class LizaJamesWedding extends LitElement {
+    @property({ type: Object }) router!: Router;
+
     @property({ type: String }) title = 'My app';
 
     @property({ type: String }) activeItem = 'ceremony';
@@ -23,6 +28,11 @@ export class LizaJamesWedding extends LitElement {
         // eslint-disable-next-line wc/guard-super-call
         super.connectedCallback();
 
+        window.addEventListener(
+            'vaadin-router-location-changed',
+            this.handleLocationChanged
+        );
+
         const params = new URLSearchParams(window.location.search);
         const rsvpParam = params.get('rsvp');
         this.isRsvp = !!rsvpParam;
@@ -31,18 +41,42 @@ export class LizaJamesWedding extends LitElement {
             'https://calendar.google.com/event?action=TEMPLATE&tmeid=MW5qMjFyanVwMnFldHNqaTN1NjVoYjlmc2ogam9kb25vZ2gxQG0&tmsrc=jodonogh1%40gmail.com';
     }
 
+    firstUpdated() {
+        // this.router = new Router(this.outlet);
+        // this.router.setRoutes([
+        //     {
+        //         path: '/',
+        //         name: 'home',
+        //         component: 'lj-venue',
+        //     },
+        //     {
+        //         path: '/rsvp',
+        //         name: 'rsvp',
+        //         component: 'lj-rsvp',
+        //     },
+        // ]);
+    }
+
+    handleLocationChanged = () => {
+        this.activeItem = this.router?.location.route?.name as string;
+    };
+
     render() {
         return html`
             <div class="font-body">
                 <div class="h-screen">
-                    <div class="max-w-3xl mx-auto px-8 sm:pt-36 pt-16">
+                    <div
+                        class="max-w-3xl mx-auto px-8 sm:pt-36 pt-16 text-center"
+                    >
                         <div class="flex flex-col">
-                            <div class="text-5xl sm:text-8xl font-bold mb-16">
+                            <div
+                                class="text-4xl sm:text-8xl font-bold mb-16 text-center"
+                            >
                                 Liza & James
                             </div>
                             <img
                                 class="w-full rounded-lg"
-                                src="src/assets/liza_james.jpeg"
+                                src="src/assets/liza_james_2.jpeg"
                                 alt="this slowpoke moves"
                                 width="250"
                             />
@@ -57,7 +91,7 @@ export class LizaJamesWedding extends LitElement {
                                 <div>Urbandale, Iowa</div>
                             </div>
 
-                            <div class="flex mt-8">
+                            <div class="flex mt-8 justify-center">
                                 <a
                                     href=${this.url}
                                     class="tracking-widest uppercase font-bold bg-primary-600  text-primary-50 hover:bg-primary-800 px-12 py-4 rounded w-full text-center transition sm:max-w-max"
@@ -66,8 +100,15 @@ export class LizaJamesWedding extends LitElement {
                                 </a>
                             </div>
                         </div>
+                        <!-- <mwc-tab-bar>
+                            <mwc-tab label="Home"></mwc-tab>
+                            <mwc-tab label="Rsvp"></mwc-tab>
+                        </mwc-tab-bar> -->
                     </div>
-                    ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
+
+                    <!-- <div id="outlet"></div> -->
+
+                    <lj-rsvp></lj-rsvp>
                     <lj-venue></lj-venue>
                 </div>
             </div>

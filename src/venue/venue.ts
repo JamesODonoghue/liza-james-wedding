@@ -9,7 +9,7 @@ export class Venue extends LitElement {
 
     render() {
         return html`
-            <div class="max-w-3xl mx-auto px-8 sm:pt-36 pt-16">
+            <div class="max-w-3xl mx-auto px-8 pt-36">
                 <div>
                     <div class="text-5xl sm:text-8xl font-semibold mb-4">
                         <a

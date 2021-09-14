@@ -2,11 +2,13 @@
 /* eslint-disable no-shadow */
 import { html, LitElement } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
+import { ref, createRef, Ref } from 'lit/directives/ref.js';
 import { api } from '../utils/api.js';
 
 import '../components/text-field/text-field.js';
 import '../components/radio/radio.js';
 import '@material/mwc-circular-progress';
+import { validateEmail } from '../utils/util.js';
 
 interface Guest {
     name: string;
@@ -25,11 +27,7 @@ export class Rsvp extends LitElement {
 
     @state() firstName = '';
 
-    @state() localFirstName = '';
-
     @state() lastName = '';
-
-    @state() localLastName = '';
 
     @state() email = '';
 
@@ -43,6 +41,10 @@ export class Rsvp extends LitElement {
 
     @state() formStatus = FormStatus.INITIAL;
 
+    @state() isEmailValid = false;
+
+    @state() progressSpinner: Ref<HTMLElement> = createRef();
+
     createRenderRoot() {
         return this;
     }
@@ -54,6 +56,13 @@ export class Rsvp extends LitElement {
     }
 
     handleFormStatusUpdated() {
+        if (this.formStatus === FormStatus.PENDING) {
+            this.progressSpinner.value?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+                inline: 'center',
+            });
+        }
         this.guestId = localStorage.getItem('lizaJamesGuestId') ?? '';
         this.firstName = localStorage.getItem('lizaJamesGuestFirstName') ?? '';
         this.lastName = localStorage.getItem('lizaJamesGuestLastName') ?? '';
@@ -109,7 +118,6 @@ export class Rsvp extends LitElement {
             const { Id, FirstName, LastName, Rsvp, Artist, Track } = await api({
                 body: request,
             });
-
             localStorage.setItem('lizaJamesGuestId', Id);
             localStorage.setItem('lizaJamesGuestFirstName', FirstName);
             localStorage.setItem('lizaJamesGuestLastName', LastName);
@@ -128,7 +136,6 @@ export class Rsvp extends LitElement {
 
     handleRemoveGuest(e: any) {
         e.preventDefault();
-        console.log('event', e.target.key);
         this.guests = [
             ...this.guests.slice(0, e.target?.key),
             ...this.guests.slice(e.target?.key + 1),
@@ -160,7 +167,6 @@ export class Rsvp extends LitElement {
                         .value=${this.firstName}
                         ?disabled=${!!this.guestId}
                         name="firstName"
-                        required
                     ></lj-textfield>
                 </div>
                 <div class="w-full">
@@ -170,7 +176,6 @@ export class Rsvp extends LitElement {
 
                     <lj-textfield
                         inputType="text"
-                        required
                         name="lastName"
                         ?disabled=${!!this.guestId}
                         .value=${this.lastName}
@@ -180,13 +185,24 @@ export class Rsvp extends LitElement {
         `;
     }
 
+    validateEmail(e: Event) {
+        const input = e.target as HTMLInputElement;
+        this.isEmailValid = validateEmail(input.value);
+    }
+
     renderEmailSection() {
         return html`
             <div class="mb-8">
                 <div class="mb-2">
                     <label>Email</label>
                 </div>
-                <lj-textfield inputType="email" name="email"></lj-textfield>
+                <lj-textfield
+                    inputType="email"
+                    name="email"
+                    placeholder="wedding.guest@email.com"
+                    @change=${this.validateEmail}
+                    ?invalid=${!this.isEmailValid}
+                ></lj-textfield>
             </div>
         `;
     }
@@ -197,25 +213,27 @@ export class Rsvp extends LitElement {
                 <div class="mb-2">
                     <label>RSVP</label>
                 </div>
-                <div class="mb-2">
-                    <lj-radio
-                        label="Accept"
-                        inputId="accept"
-                        name="rsvp"
-                        value="ACCEPT"
-                        @change=${this.handleChangeRsvp}
-                        ?checked=${this.rsvp === 'ACCEPT'}
-                    ></lj-radio>
-                </div>
-                <div>
-                    <lj-radio
-                        label="Decline"
-                        inputId="decline"
-                        name="rsvp"
-                        value="DECLINE"
-                        @change=${this.handleChangeRsvp}
-                        ?checked=${this.rsvp === 'DECLINE'}
-                    ></lj-radio>
+                <div class="flex items-center">
+                    <div class="w-full mr-8">
+                        <lj-radio
+                            label="Accept"
+                            inputId="accept"
+                            name="rsvp"
+                            value="ACCEPT"
+                            @change=${this.handleChangeRsvp}
+                            ?checked=${this.rsvp === 'ACCEPT'}
+                        ></lj-radio>
+                    </div>
+                    <div class="w-full">
+                        <lj-radio
+                            label="Decline"
+                            inputId="decline"
+                            name="rsvp"
+                            value="DECLINE"
+                            @change=${this.handleChangeRsvp}
+                            ?checked=${this.rsvp === 'DECLINE'}
+                        ></lj-radio>
+                    </div>
                 </div>
             </div>
         `;
@@ -227,44 +245,46 @@ export class Rsvp extends LitElement {
 
     renderGuestSection({ key, name }: { key: number; name: string }) {
         return html`
-            <div class="mb-12 flex items-end">
-                <div class="w-3/4 mr-8">
-                    <div class="mb-2">
-                        <label>Guest Name</label>
-                    </div>
-                    <lj-textfield
-                        .name=${key}
-                        value=${name}
-                        @input=${this.handleChangeGuest}
-                    ></lj-textfield>
+            <div class="mb-12">
+                <div class="mb-2">
+                    <label>Guest Name</label>
                 </div>
-                <div>
-                    <button
-                        .key=${key}
-                        @click=${this.handleRemoveGuest}
-                        class="hidden sm:block tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 px-8 py-3 rounded w-full text-center transition"
-                    >
-                        Remove
-                    </button>
-                    <button
-                        .key=${key}
-                        @click=${this.handleRemoveGuest}
-                        class="sm:hidden tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 p-2 rounded text-center transition"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            width="24px"
-                            fill="#000000"
-                            class="pointer-events-none"
+                <div class="flex items-center">
+                    <div class="w-3/4 mr-8">
+                        <lj-textfield
+                            .name=${key}
+                            value=${name}
+                            @input=${this.handleChangeGuest}
+                        ></lj-textfield>
+                    </div>
+                    <div>
+                        <button
+                            .key=${key}
+                            @click=${this.handleRemoveGuest}
+                            class="hidden sm:block tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 px-8 py-3 rounded w-full text-center transition"
                         >
-                            <path d="M0 0h24v24H0V0z" fill="none" />
-                            <path
-                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
-                            />
-                        </svg>
-                    </button>
+                            Remove
+                        </button>
+                        <button
+                            .key=${key}
+                            @click=${this.handleRemoveGuest}
+                            class="sm:hidden tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 p-2 rounded text-center transition"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 0 24 24"
+                                width="24px"
+                                fill="#000000"
+                                class="pointer-events-none"
+                            >
+                                <path d="M0 0h24v24H0V0z" fill="none" />
+                                <path
+                                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"
+                                />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -305,21 +325,33 @@ export class Rsvp extends LitElement {
 
     renderProgressSpinner() {
         return html`
-            <div class="py-16 text-center">
+            <div ${ref(this.progressSpinner)} class="flex justify-center py-24">
                 <mwc-circular-progress indeterminate></mwc-circular-progress>
             </div>
         `;
     }
 
+    renderFailedSubmit() {
+        return html` <div></div> `;
+    }
+
     renderCompleteSubmit() {
         return html`
-            <div class="max-w-md mx-auto py-16">
-                <div class="text-xl mb-8">
-                    Thank you for submitting your response!
+            <div class="max-w-md mx-auto py-24">
+                <div class="text-4xl font-semibold mb-8 flex items-center">
+                    <div class="text-success-600 mr-4">
+                        <span class="material-icons"> check_circle </span>
+                    </div>
+                    <div>Success!</div>
+                </div>
+                <div class="text-xl mb-4">
+                    Thank you for submitting your response :)
                 </div>
                 <div class="text-xl mb-12">
-                    Would you like to edit your rsvp?
+                    If you have any questions please email at
+                    liza.kroeschell@gmail.com
                 </div>
+
                 <div>
                     <button
                         class="w-full tracking-widest uppercase font-bold bg-primary-600 text-primary-50 hover:bg-primary-800 px-12 py-4 rounded text-center transition disabled:bg-primary-300 disabled:hover:bg-primary-300 disabled:cursor-not-allowed"
@@ -368,21 +400,12 @@ export class Rsvp extends LitElement {
 
     render() {
         return html`
-            <div class="sm:py-32 pt-16">
-                <div class="max-w-3xl mx-auto px-8">
+            <div class="py-32">
+                <div class="max-w-2xl mx-auto px-8">
                     <div class="text-5xl sm:text-8xl font-semibold mb-8">
                         <div>RSVP</div>
                     </div>
                     <div @input=${this.handleInput}>
-                        <div class="flex items-center justify-end w-full">
-                            <button
-                                @click=${this.handleClear}
-                                class="tracking-widest uppercase font-bold text-neutral-700 hover:bg-primary-200 px-8 py-3 rounded text-center transition"
-                            >
-                                Clear
-                            </button>
-                        </div>
-
                         ${this.formStatus === FormStatus.PENDING
                             ? this.renderProgressSpinner()
                             : ''}
