@@ -3,8 +3,6 @@ import { Router } from '@vaadin/router';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import './venue/venue.js';
 import './rsvp/rsvp.js';
-import '@material/mwc-tab-bar';
-import '@material/mwc-tab';
 
 @customElement('liza-james-wedding')
 export class LizaJamesWedding extends LitElement {
@@ -28,11 +26,6 @@ export class LizaJamesWedding extends LitElement {
         // eslint-disable-next-line wc/guard-super-call
         super.connectedCallback();
 
-        window.addEventListener(
-            'vaadin-router-location-changed',
-            this.handleLocationChanged
-        );
-
         const params = new URLSearchParams(window.location.search);
         const rsvpParam = params.get('rsvp');
         this.isRsvp = !!rsvpParam;
@@ -40,26 +33,6 @@ export class LizaJamesWedding extends LitElement {
         this.url =
             'https://calendar.google.com/event?action=TEMPLATE&tmeid=MW5qMjFyanVwMnFldHNqaTN1NjVoYjlmc2ogam9kb25vZ2gxQG0&tmsrc=jodonogh1%40gmail.com';
     }
-
-    firstUpdated() {
-        // this.router = new Router(this.outlet);
-        // this.router.setRoutes([
-        //     {
-        //         path: '/',
-        //         name: 'home',
-        //         component: 'lj-venue',
-        //     },
-        //     {
-        //         path: '/rsvp',
-        //         name: 'rsvp',
-        //         component: 'lj-rsvp',
-        //     },
-        // ]);
-    }
-
-    handleLocationChanged = () => {
-        this.activeItem = this.router?.location.route?.name as string;
-    };
 
     render() {
         return html`
@@ -100,15 +73,9 @@ export class LizaJamesWedding extends LitElement {
                                 </a>
                             </div>
                         </div>
-                        <!-- <mwc-tab-bar>
-                            <mwc-tab label="Home"></mwc-tab>
-                            <mwc-tab label="Rsvp"></mwc-tab>
-                        </mwc-tab-bar> -->
                     </div>
 
-                    <!-- <div id="outlet"></div> -->
-
-                    <lj-rsvp></lj-rsvp>
+                    ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
                     <lj-venue></lj-venue>
                 </div>
             </div>

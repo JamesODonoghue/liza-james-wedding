@@ -21,8 +21,6 @@
     "dependencies": {
         "@fullhuman/postcss-purgecss": "^4.0.3",
         "@material/mwc-circular-progress": "^0.22.1",
-        "@material/mwc-tab": "^0.22.1",
-        "@material/mwc-tab-bar": "^0.22.1",
         "@open-wc/building-rollup": "^1.10.0",
         "@open-wc/dev-server-hmr": "^0.1.1",
         "@open-wc/eslint-config": "^4.3.0",
