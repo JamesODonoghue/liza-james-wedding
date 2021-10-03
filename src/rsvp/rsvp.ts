@@ -219,7 +219,7 @@ export class Rsvp extends LitElement {
 
     renderRsvpSection() {
         return html`
-            <div class="mb-8">
+            <div class="mb-12">
                 <div class="mb-2">
                     <label>RSVP</label>
                 </div>
@@ -342,33 +342,65 @@ export class Rsvp extends LitElement {
     }
 
     renderFailedSubmit() {
-        return html` <div></div> `;
+        return html`
+            <div>
+                <div class="max-w-md py-24">
+                    <div class="text-4xl font-semibold mb-8 flex items-center">
+                        <div class="text-error-600 mr-4">
+                            <span
+                                class="material-icons sm:text-5xl leading-tight"
+                            >
+                                error
+                            </span>
+                        </div>
+                        <div>We object!</div>
+                    </div>
+                    <div class="sm:ml-16">
+                        <div class="text-xl mb-12">
+                            Something when wrong submitting your response :(
+                        </div>
+                        <div>
+                            <button
+                                class="w-full tracking-widest uppercase font-bold bg-primary-600 text-primary-50 hover:bg-primary-800 px-12 py-4 rounded text-center transition disabled:bg-primary-300 disabled:hover:bg-primary-300 disabled:cursor-not-allowed"
+                                @click=${this.handleEditRsvp}
+                            >
+                                Try again
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     renderCompleteSubmit() {
         return html`
-            <div class="max-w-md mx-auto py-24">
+            <div class="max-w-md py-24">
                 <div class="text-4xl font-semibold mb-8 flex items-center">
                     <div class="text-success-600 mr-4">
-                        <span class="material-icons"> check_circle </span>
+                        <span class="material-icons sm:text-5xl leading-tight">
+                            check_circle
+                        </span>
                     </div>
                     <div>Success!</div>
                 </div>
-                <div class="text-xl mb-4">
-                    Thank you for submitting your response :)
-                </div>
-                <div class="text-xl mb-12">
-                    If you have any questions please email at
-                    liza.kroeschell@gmail.com
-                </div>
+                <div class="sm:ml-16">
+                    <div class="text-xl mb-4">
+                        Thank you for submitting your response :)
+                    </div>
+                    <div class="text-xl mb-12">
+                        If you have any questions please email at
+                        liza.kroeschell@gmail.com
+                    </div>
 
-                <div>
-                    <button
-                        class="w-full tracking-widest uppercase font-bold bg-primary-600 text-primary-50 hover:bg-primary-800 px-12 py-4 rounded text-center transition disabled:bg-primary-300 disabled:hover:bg-primary-300 disabled:cursor-not-allowed"
-                        @click=${this.handleEditRsvp}
-                    >
-                        Edit rsvp
-                    </button>
+                    <div>
+                        <button
+                            class="w-full tracking-widest uppercase font-bold bg-primary-600 text-primary-50 hover:bg-primary-800 px-12 py-4 rounded text-center transition disabled:bg-primary-300 disabled:hover:bg-primary-300 disabled:cursor-not-allowed"
+                            @click=${this.handleEditRsvp}
+                        >
+                            Edit rsvp
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -377,7 +409,7 @@ export class Rsvp extends LitElement {
     renderDanceSongSection() {
         return html`
             <div>
-                <div class="text-xl font-semibold mb-8">
+                <div class="text-xl font-semibold mb-4">
                     What song will get you on the dance floor?
                 </div>
                 <div class="mb-8 sm:flex items-center">
@@ -410,43 +442,41 @@ export class Rsvp extends LitElement {
 
     render() {
         return html`
-            <div class="py-32">
-                <div class="max-w-2xl mx-auto px-8">
-                    <div class="text-5xl sm:text-8xl font-semibold mb-8">
-                        <div>RSVP</div>
-                    </div>
-                    <div @input=${this.handleInput}>
-                        ${this.formStatus === FormStatus.PENDING
-                            ? this.renderProgressSpinner()
-                            : ''}
-                        ${this.formStatus === FormStatus.SUCCESS
-                            ? this.renderCompleteSubmit()
-                            : ''}
-                        ${this.formStatus === FormStatus.INITIAL
-                            ? html`
-                                  <div>
-                                      ${this.renderNameSection()}
-                                      ${this.renderEmailSection()}
-                                      ${this.renderRsvpSection()}
-                                      ${this.rsvp === 'ACCEPT'
-                                          ? html`
-                                                ${this.renderDanceSongSection()}
-                                                ${this.guests.map(
-                                                    ({ name }, key) =>
-                                                        this.renderGuestSection(
-                                                            {
-                                                                key,
-                                                                name,
-                                                            }
-                                                        )
-                                                )}
-                                            `
-                                          : ''}
-                                      ${this.renderMainButtons()}
-                                  </div>
-                              `
-                            : ''}
-                    </div>
+            <div class="max-w-2xl mx-auto px-8 grid">
+                <div class="text-5xl sm:text-8xl font-semibold mb-8">
+                    <div>RSVP</div>
+                </div>
+                <div @input=${this.handleInput}>
+                    ${this.formStatus === FormStatus.PENDING
+                        ? this.renderProgressSpinner()
+                        : ''}
+                    ${this.formStatus === FormStatus.SUCCESS
+                        ? this.renderCompleteSubmit()
+                        : ''}
+                    ${this.formStatus === FormStatus.FAIL
+                        ? this.renderFailedSubmit()
+                        : ''}
+                    ${this.formStatus === FormStatus.INITIAL
+                        ? html`
+                              <div>
+                                  ${this.renderNameSection()}
+                                  ${this.renderEmailSection()}
+                                  ${this.renderRsvpSection()}
+                                  ${this.rsvp === 'ACCEPT'
+                                      ? html`
+                                            ${this.renderDanceSongSection()}
+                                            ${this.guests.map(({ name }, key) =>
+                                                this.renderGuestSection({
+                                                    key,
+                                                    name,
+                                                })
+                                            )}
+                                        `
+                                      : ''}
+                                  ${this.renderMainButtons()}
+                              </div>
+                          `
+                        : ''}
                 </div>
             </div>
         `;
