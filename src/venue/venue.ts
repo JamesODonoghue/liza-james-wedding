@@ -9,7 +9,7 @@ export class Venue extends LitElement {
 
     render() {
         return html`
-            <div class="max-w-3xl mx-auto px-8 pt-36">
+            <div class="max-w-3xl mx-auto px-8 pt-64">
                 <div>
                     <div class="text-5xl sm:text-8xl font-semibold mb-4">
                         <a
@@ -68,7 +68,7 @@ export class Venue extends LitElement {
                             </p>
                         </div>
                     </div>
-                    <div class="mb-12">
+                    <!-- <div class="mb-12">
                         <div class="flex items-baseline mb-8">
                             <div
                                 class="mr-8 sm:text-6xl text-4xl font-semibold"
@@ -86,7 +86,7 @@ export class Venue extends LitElement {
                                 Living Farms.
                             </p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="max-w-xl">
                         <div class="text-2xl mb-4 font-medium">
                             Other accomodations

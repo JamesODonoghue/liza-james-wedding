@@ -37,47 +37,44 @@ export class LizaJamesWedding extends LitElement {
     render() {
         return html`
             <div class="font-body">
-                <div class="h-screen">
-                    <div
-                        class="max-w-3xl mx-auto px-8 sm:pt-36 pt-16 text-center"
-                    >
-                        <div class="flex flex-col">
+                <div class="h-screen mx-auto px-8 flex items-center">
+                    <div class="flex flex-col items-center">
+                        <div class="grid sm:grid-cols-2 grid-cols-1 gap-8">
                             <div
-                                class="text-4xl sm:text-8xl font-bold mb-16 text-center"
+                                class="max-w-4xl flex flex-col justify-center mx-auto"
                             >
-                                Liza & James
-                            </div>
-                            <img
-                                class="w-full rounded-lg"
-                                src="src/assets/liza_james_2.jpeg"
-                                alt="this slowpoke moves"
-                                width="250"
-                            />
-
-                            <div
-                                class="mt-24 dark:text-neutral-100 text-xl leading-relaxed"
-                            >
+                                <div
+                                    class="text-4xl sm:text-8xl font-semibold mb-4 tracking-tight"
+                                >
+                                    Liza & James
+                                </div>
                                 <div class="font-bold text-3xl mb-4">
                                     June 25, 2022
                                 </div>
                                 <div>Living History Farms</div>
                                 <div>Urbandale, Iowa</div>
+                                <div class="flex mt-8">
+                                    <a
+                                        href=${this.url}
+                                        class="tracking-widest uppercase font-bold bg-primary-600  text-primary-50 hover:bg-primary-800 px-12 py-4 rounded w-full text-center transition sm:max-w-max"
+                                    >
+                                        Add to calendar
+                                    </a>
+                                </div>
                             </div>
-
-                            <div class="flex mt-8 justify-center">
-                                <a
-                                    href=${this.url}
-                                    class="tracking-widest uppercase font-bold bg-primary-600  text-primary-50 hover:bg-primary-800 px-12 py-4 rounded w-full text-center transition sm:max-w-max"
-                                >
-                                    Add to calendar
-                                </a>
+                            <div class="max-w-4xl">
+                                <img
+                                    class="rounded-lg"
+                                    src="src/assets/liza_james_2.jpeg"
+                                    alt="this slowpoke moves"
+                                />
                             </div>
                         </div>
                     </div>
-
-                    ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
-                    <lj-venue></lj-venue>
                 </div>
+
+                ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
+                <lj-venue></lj-venue>
             </div>
         `;
     }
