@@ -263,6 +263,7 @@ export class Rsvp extends LitElement {
                     <div class="w-3/4 mr-8">
                         <lj-textfield
                             .name=${key}
+                            placeholder="Family member / Friend"
                             value=${name}
                             @input=${this.handleChangeGuest}
                         ></lj-textfield>
@@ -388,8 +389,11 @@ export class Rsvp extends LitElement {
                     <div class="text-xl mb-4">
                         Thank you for submitting your response :)
                     </div>
+                    <div class="text-xl mb-4">
+                        You can edit your rsvp at any time!
+                    </div>
                     <div class="text-xl mb-12">
-                        If you have any questions please email at
+                        If you have any questions please email us
                         liza.kroeschell@gmail.com
                     </div>
 
