@@ -21,6 +21,26 @@ enum FormStatus {
     FAIL = 'FAIL',
 }
 
+enum ToastStatus {
+    NONE = 'NONE',
+    ERROR = 'ERROR',
+}
+
+const TRACK_BLACK_LIST = [
+    'uptown funk',
+    'i gotta feeling',
+    'i got a feeling',
+    'hey ya!',
+    'hey ya',
+    'single ladies',
+    'brown eyed girl',
+    'get lucky',
+    'my girl',
+    'roar',
+];
+
+const ARTIST_BLACK_LIST = ['bruno mars'];
+
 @customElement('lj-rsvp')
 export class Rsvp extends LitElement {
     private guestId = '';
@@ -40,6 +60,10 @@ export class Rsvp extends LitElement {
     @state() guests: Guest[] = [];
 
     @state() formStatus = FormStatus.INITIAL;
+
+    @state() toastStatus = ToastStatus.NONE;
+
+    @state() toastMessage = '';
 
     @state() isEmailValid = false;
 
@@ -111,8 +135,28 @@ export class Rsvp extends LitElement {
         }));
     }
 
+    isTrackValid() {
+        return !TRACK_BLACK_LIST.includes(this.track.toLowerCase());
+    }
+
+    isArtistValid() {
+        return !ARTIST_BLACK_LIST.includes(this.artist.toLowerCase());
+    }
+
     async postForm() {
+        if (!this.isTrackValid()) {
+            this.toastMessage = 'Oops! Please choose a different track!';
+            return;
+        }
+
+        if (!this.isArtistValid()) {
+            this.toastMessage = 'Oops! Please choose a different artist!';
+            return;
+        }
+
+        this.toastMessage = '';
         this.formStatus = FormStatus.PENDING;
+
         const request = {
             Id: this.guestId,
             FirstName: this.firstName,
@@ -377,23 +421,23 @@ export class Rsvp extends LitElement {
     renderCompleteSubmit() {
         return html`
             <div class="max-w-md py-24">
-                <div class="text-4xl font-semibold mb-8 flex items-center">
-                    <div class="text-success-600 mr-4">
-                        <span class="material-icons sm:text-5xl leading-tight">
+                <div class="text-2xl mb-8 flex items-center">
+                    <div class="text-success-600 mr-6">
+                        <span class="material-icons sm:text-4xl leading-tight">
                             check_circle
                         </span>
                     </div>
-                    <div>Success!</div>
+                    <div class="uppercase font-semibold tracking-wider">
+                        Success 🍾
+                    </div>
                 </div>
                 <div class="sm:ml-16">
-                    <div class="text-xl mb-4">
-                        Thank you for submitting your response :)
-                    </div>
+                    <div class="text-xl mb-4">Thank you 😃</div>
                     <div class="text-xl mb-4">
                         You can edit your rsvp at any time!
                     </div>
                     <div class="text-xl mb-12">
-                        If you have any questions please email us
+                        If you have any questions please email
                         liza.kroeschell@gmail.com
                     </div>
 
@@ -444,13 +488,24 @@ export class Rsvp extends LitElement {
         `;
     }
 
+    renderToast() {
+        return html`
+            <div class="p-4 bg-error-50 rounded border-2 text-error-900 mb-8">
+                ${this.toastMessage}
+            </div>
+        `;
+    }
+
     render() {
         return html`
-            <div class="max-w-2xl mx-auto px-8 grid">
-                <div class="text-5xl sm:text-8xl font-semibold mb-8">
+            <div class="max-w-3xl mx-auto px-8 grid">
+                <div
+                    class="text-4xl uppercase tracking-widest font-semibold mb-8"
+                >
                     <div>RSVP</div>
                 </div>
                 <div @input=${this.handleInput}>
+                    ${this.toastMessage ? this.renderToast() : ''}
                     ${this.formStatus === FormStatus.PENDING
                         ? this.renderProgressSpinner()
                         : ''}

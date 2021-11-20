@@ -10,10 +10,12 @@ export class Venue extends LitElement {
     render() {
         return html`
             <div class="max-w-3xl mx-auto px-8 pt-64">
-                <div class="uppercase font-semibold tracking-widest mb-8">
-                    Venue
+                <div
+                    class="text-4xl uppercase font-semibold tracking-widest mb-8"
+                >
+                    Where the party's at
                 </div>
-                <div class="text-5xl sm:text-6xl font-semibold mb-4">
+                <div class="text-2xl font-semibold mb-4">
                     <a
                         class="text-primary-800 hover:text-primary-600 dark:hover:text-primary-600 dark:text-primary-300 items-center inline-flex transition"
                         href="https://www.lhf.org/"
@@ -23,26 +25,24 @@ export class Venue extends LitElement {
                 </div>
                 <div class="mb-8">11121 Hickman Rd, Urbandale, IA 50322</div>
                 <div class="mb-4 max-w-xl">
-                    <p>Ceremony takes place at the Church of the land.</p>
-                    <p>
-                        Reception afterwards at an authentic 19th century barn!
-                    </p>
+                    <p>Ceremony at Church of the Land</p>
+                    <p>Reception afterwards at the Flynn Barn</p>
                 </div>
             </div>
             <div class="py-36">
                 <div class="max-w-3xl mx-auto px-8">
-                    <div class="uppercase font-semibold tracking-widest mb-8">
-                        Accommodations
+                    <div
+                        class="text-4xl uppercase font-semibold tracking-widest mb-8"
+                    >
+                        Where to stay
                     </div>
                     <div class="mb-32">
                         <div class="sm:flex items-center mb-4">
-                            <div
-                                class="sm:mr-8 sm:text-6xl text-4xl font-semibold mb-4"
-                            >
+                            <div class="text-2xl font-semibold sm:mr-8">
                                 <a
                                     class="inline-flex items-center text-primary-800 hover:text-primary-600 dark:text-primary-300 dark:hover:text-primary-600 transition"
                                     href="https://hotelrenovo.com/"
-                                    ><span class="h-6 mr-2">Hotel Renovo</span>
+                                    ><span>Hotel Renovo</span>
                                 </a>
                             </div>
                             <div
@@ -58,25 +58,22 @@ export class Venue extends LitElement {
                         </div>
                         <div class="font-body max-w-xl">
                             <div class="mb-8">
-                                <div class="text-3xl font-semibold mb-2 ">
-                                    (515) 276-1126
-                                </div>
-                                <p class="mb-2 text-xl">
+                                <div>11167 Hickman Rd, Urbandale, IA 50322</div>
+                                <div class="mb-4">(515) 276-1126</div>
+                                <p class="mb-2">
                                     Call and ask for the Liza and James wedding
                                     block
                                 </p>
                             </div>
 
-                            <div class="text-xl mb-2 font-semibold">
-                                Fast facts
-                            </div>
+                            <div class="mb-2 font-semibold">Fast facts</div>
 
                             <p class="mb-2">
                                 5 minute walk to Living History Farms
                             </p>
                             <p class="mb-2">
                                 Largest indoor hotel swimming pool in the
-                                greater Des Moines area (probably).
+                                greater Des Moines area (probably)
                             </p>
                         </div>
                     </div>
@@ -101,7 +98,7 @@ export class Venue extends LitElement {
                     </div> -->
                     <div class="max-w-xl">
                         <div class="text-2xl mb-4 font-medium">
-                            Other accomodations
+                            Alternate accomodations
                         </div>
                         <p class="font-body">
                             Living History Farms is around 15 minutes from
