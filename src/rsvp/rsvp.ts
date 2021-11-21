@@ -138,6 +138,7 @@ export class Rsvp extends LitElement {
         const input = e.target as HTMLInputElement;
 
         this.guests = this.guests.map((guest, index) => ({
+            ...guest,
             name: index === parseFloat(input.name) ? input.value : guest.name,
         }));
     }
