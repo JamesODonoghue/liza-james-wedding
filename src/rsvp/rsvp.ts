@@ -98,6 +98,11 @@ export class Rsvp extends LitElement {
         this.lastName = localStorage.getItem('lizaJamesGuestLastName') ?? '';
         this.email = localStorage.getItem('lizaJamesGuestEmail') ?? '';
         this.rsvp = localStorage.getItem('lizaJamesGuestRsvp') ?? 'ACCEPT';
+        this.artist = localStorage.getItem('lizaJamesGuestArtist') ?? '';
+        this.track = localStorage.getItem('lizaJamesGuestTrack') ?? '';
+        this.guests = localStorage.getItem('lizaJamesGuests')
+            ? JSON.parse(localStorage.getItem('lizaJamesGuests') as string)
+            : [];
     }
 
     isExistingGuestUser() {
@@ -171,10 +176,18 @@ export class Rsvp extends LitElement {
         };
 
         try {
-            const { Id, FirstName, LastName, Rsvp, Artist, Track, Email } =
-                await api({
-                    body: request,
-                });
+            const {
+                Id,
+                FirstName,
+                LastName,
+                Rsvp,
+                Artist,
+                Track,
+                Email,
+                Guests,
+            } = await api({
+                body: request,
+            });
             localStorage.setItem('lizaJamesGuestId', Id);
             localStorage.setItem('lizaJamesGuestFirstName', FirstName);
             localStorage.setItem('lizaJamesGuestLastName', LastName);
@@ -182,6 +195,7 @@ export class Rsvp extends LitElement {
             localStorage.setItem('lizaJamesGuestRsvp', Rsvp);
             localStorage.setItem('lizaJamesGuestArtist', Artist);
             localStorage.setItem('lizaJamesGuestTrack', Track);
+            localStorage.setItem('lizaJamesGuests', JSON.stringify(Guests));
             this.formStatus = FormStatus.SUCCESS;
         } catch (e) {
             this.formStatus = FormStatus.FAIL;
@@ -425,7 +439,7 @@ export class Rsvp extends LitElement {
 
     renderCompleteSubmit() {
         return html`
-            <div class="max-w-md py-24">
+            <div class="max-w-md py-12">
                 <div class="text-2xl mb-8 flex items-center">
                     <div class="text-success-600 mr-6">
                         <span class="material-icons sm:text-4xl leading-tight">
