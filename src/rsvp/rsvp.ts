@@ -96,6 +96,8 @@ export class Rsvp extends LitElement {
         this.guestId = localStorage.getItem('lizaJamesGuestId') ?? '';
         this.firstName = localStorage.getItem('lizaJamesGuestFirstName') ?? '';
         this.lastName = localStorage.getItem('lizaJamesGuestLastName') ?? '';
+        this.email = localStorage.getItem('lizaJamesGuestEmail') ?? '';
+        this.rsvp = localStorage.getItem('lizaJamesGuestRsvp') ?? 'ACCEPT';
     }
 
     isExistingGuestUser() {
@@ -169,12 +171,14 @@ export class Rsvp extends LitElement {
         };
 
         try {
-            const { Id, FirstName, LastName, Rsvp, Artist, Track } = await api({
-                body: request,
-            });
+            const { Id, FirstName, LastName, Rsvp, Artist, Track, Email } =
+                await api({
+                    body: request,
+                });
             localStorage.setItem('lizaJamesGuestId', Id);
             localStorage.setItem('lizaJamesGuestFirstName', FirstName);
             localStorage.setItem('lizaJamesGuestLastName', LastName);
+            localStorage.setItem('lizaJamesGuestEmail', Email);
             localStorage.setItem('lizaJamesGuestRsvp', Rsvp);
             localStorage.setItem('lizaJamesGuestArtist', Artist);
             localStorage.setItem('lizaJamesGuestTrack', Track);
@@ -253,6 +257,7 @@ export class Rsvp extends LitElement {
                 <lj-textfield
                     inputType="email"
                     name="email"
+                    .value=${this.email}
                     placeholder="wedding.guest@email.com"
                     @change=${this.validateEmail}
                     ?invalid=${!this.isEmailValid}
