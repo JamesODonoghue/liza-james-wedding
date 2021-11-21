@@ -1,5 +1,5 @@
 const API_URL =
-    'https://script.google.com/macros/s/AKfycbxwSobtiRi7c2mq9zSLQ2Yc8xc1ts03iwrabChqrg6l4l_itG7RfQWlz1mLe9Z93qeQ/exec';
+    'https://script.google.com/macros/s/AKfycbw7l3gBgoFlRIEjG_jkP_YiC19xxp125MADMzajI2Fb4iNEZ2t37Hs-bWevv5dbPyZ-/exec';
 
 export const api = ({ body = {}, ...customConfig } = {}) => {
     const config = {
