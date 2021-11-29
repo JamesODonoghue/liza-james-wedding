@@ -26,9 +26,9 @@ export class LizaJamesWedding extends LitElement {
         // eslint-disable-next-line wc/guard-super-call
         super.connectedCallback();
 
-        const params = new URLSearchParams(window.location.search);
-        const rsvpParam = params.get('rsvp');
-        this.isRsvp = !!rsvpParam;
+        // const params = new URLSearchParams(window.location.search);
+        // const rsvpParam = params.get('rsvp');
+        this.isRsvp = true;
 
         this.url =
             'https://calendar.google.com/event?action=TEMPLATE&tmeid=MW5qMjFyanVwMnFldHNqaTN1NjVoYjlmc2ogam9kb25vZ2gxQG0&tmsrc=jodonogh1%40gmail.com';
