@@ -10,7 +10,7 @@ export class Venue extends LitElement {
     render() {
         return html`
             <div class="max-w-3xl mx-auto px-8 pt-64">
-                <!-- <div
+                <div
                     class="text-4xl uppercase font-semibold tracking-widest mb-8"
                 >
                     Where the party's at
@@ -27,7 +27,7 @@ export class Venue extends LitElement {
                 <div class="mb-4 max-w-xl">
                     <p>Ceremony at Church of the Land</p>
                     <p>Reception afterwards at the Flynn Barn</p>
-                </div> -->
+                </div>
             </div>
             <div class="py-36">
                 <div class="max-w-3xl mx-auto px-8">

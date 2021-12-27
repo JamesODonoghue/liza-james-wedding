@@ -56,7 +56,7 @@ export class LizaJamesWedding extends LitElement {
                                 <div class="font-bold text-3xl mb-4">
                                     June 25, 2022
                                 </div>
-                                <!-- <div>Living History Farms</div> -->
+                                <div>Living History Farms</div>
                                 <div>Urbandale, Iowa</div>
                                 <div class="flex mt-8">
                                     <a
