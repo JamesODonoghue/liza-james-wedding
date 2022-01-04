@@ -518,10 +518,19 @@ export class Rsvp extends LitElement {
     render() {
         return html`
             <div class="max-w-3xl mx-auto px-8 grid">
-                <div
-                    class="text-4xl uppercase tracking-widest font-semibold mb-8"
-                >
-                    <div>RSVP</div>
+                <div class="mb-8">
+                    <div
+                        class="text-4xl uppercase tracking-widest font-semibold mb-4"
+                    >
+                        <div>RSVP</div>
+                    </div>
+                    <div
+                        class="text-neutral-700 bg-neutral-100 p-4 rounded border-2 border-neutral-200"
+                    >
+                        If you have any issues with the system James built (very
+                        possible), you can just email me at
+                        <span class="font-bold">liza.kroeschell@gmail.com</span>
+                    </div>
                 </div>
                 <div @input=${this.handleInput}>
                     ${this.toastMessage ? this.renderToast() : ''}
