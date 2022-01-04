@@ -38,7 +38,7 @@ export class LizaJamesWedding extends LitElement {
         return html`
             <div class="font-body">
                 <div
-                    class="p-8 bg-primary-800 text-xl text-center text-primary-50"
+                    class="p-6 bg-primary-800 text-xl text-center text-primary-50 fixed w-full"
                 >
                     More details coming soon!
                 </div>
