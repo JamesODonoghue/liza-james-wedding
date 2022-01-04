@@ -273,7 +273,6 @@ export class Rsvp extends LitElement {
                     inputType="email"
                     name="email"
                     .value=${this.email}
-                    placeholder="wedding.guest@email.com"
                     @change=${this.validateEmail}
                     ?invalid=${!this.isEmailValid}
                 ></lj-textfield>
