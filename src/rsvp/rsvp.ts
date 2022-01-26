@@ -527,9 +527,9 @@ export class Rsvp extends LitElement {
                     <div
                         class="text-neutral-700 bg-neutral-100 p-4 rounded border-2 border-neutral-200"
                     >
-                        If you have any issues with the system James built (very
-                        possible), you can just email me at
-                        <span class="font-bold">liza.kroeschell@gmail.com</span>
+                        If you have any issues with this system please email
+                        james at
+                        <span class="font-bold">jodonogh1@gmail.com</span>
                     </div>
                 </div>
                 <div @input=${this.handleInput}>
