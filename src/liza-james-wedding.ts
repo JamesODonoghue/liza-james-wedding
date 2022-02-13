@@ -3,6 +3,7 @@ import { Router } from '@vaadin/router';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import './venue/venue.js';
 import './rsvp/rsvp.js';
+import './eat/eat.js';
 
 @customElement('liza-james-wedding')
 export class LizaJamesWedding extends LitElement {
@@ -80,6 +81,7 @@ export class LizaJamesWedding extends LitElement {
 
                 ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
                 <lj-venue></lj-venue>
+                <lj-eat></lj-eat>
             </div>
         `;
     }
