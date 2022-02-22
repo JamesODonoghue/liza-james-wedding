@@ -5,6 +5,11 @@ import { customElement, state } from 'lit/decorators.js';
 export class Eat extends LitElement {
     @state() restaraunts = [
         {
+            name: 'Drake diner',
+            href: 'https://drakediner.com/',
+            emoji: '🍔 🍨 🥧',
+        },
+        {
             name: 'Proudfoot and Bird',
             href: 'https://www.opentable.com/r/proudfoot-and-bird-des-moines',
             emoji: '🏨',
