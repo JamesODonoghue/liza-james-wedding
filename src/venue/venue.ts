@@ -36,7 +36,7 @@ export class Venue extends LitElement {
                     >
                         Where to stay
                     </div>
-                    <div class="mb-32">
+                    <div class="mb-12">
                         <div class="sm:flex items-center mb-4">
                             <div class="text-2xl font-semibold sm:mr-8">
                                 <a
@@ -77,25 +77,6 @@ export class Venue extends LitElement {
                             </p>
                         </div>
                     </div>
-                    <!-- <div class="mb-12">
-                        <div class="flex items-baseline mb-8">
-                            <div
-                                class="mr-8 sm:text-6xl text-4xl font-semibold"
-                            >
-                                <a
-                                    class="inline-flex items-center text-primary-800 hover:text-primary-600 dark:text-primary-300 dark:hover:text-primary-600 transition"
-                                    href="https://revelhoteldsm.com/"
-                                    ><span class="h-6 mr-2">Hotel Revel</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="font-body max-w-xl">
-                            <p class="mb-2">
-                                Located behind the Renovo, also 5 min walk to
-                                Living Farms.
-                            </p>
-                        </div>
-                    </div> -->
                     <div class="max-w-xl">
                         <div class="text-2xl mb-4 font-medium">
                             Alternate accomodations
@@ -106,6 +87,31 @@ export class Venue extends LitElement {
                             hotels and airbnbs.
                         </p>
                     </div>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto px-8 py-36">
+                <div
+                    class="text-4xl uppercase font-semibold tracking-widest mb-8"
+                >
+                    What to wear
+                </div>
+                <div class="mb-4 max-w-xl">
+                    <div class="text-xl font-bold mb-2">
+                        Semi-formal garden attire
+                    </div>
+                    <p class="mb-8">
+                        Bright colors encouraged. Wear dress shoes that are
+                        compatible with gravel and grass for the ceremony;
+                        sneakers are a fashionable choice for dancing in the
+                        barn.
+                    </p>
+                    <div class="text-xl font-bold mb-2">Prepare for rain</div>
+                    <p>
+                        The last week in June boasts a high chance of rain and
+                        humidity in central Iowa. The church has air
+                        conditioning but the barn does not. Pack umbrellas, rain
+                        coats, and personal fans if you have them!
+                    </p>
                 </div>
             </div>
         `;
