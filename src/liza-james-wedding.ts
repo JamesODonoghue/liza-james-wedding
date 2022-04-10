@@ -82,6 +82,17 @@ export class LizaJamesWedding extends LitElement {
                 ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
                 <lj-venue></lj-venue>
                 <lj-eat></lj-eat>
+                <div class="max-w-3xl mx-auto px-8 py-36">
+                    <a
+                        href="https://www.blueprintregistry.com/registry/james-odonoghue-wedding-registry-6-25-2022"
+                        class="text-4xl uppercase font-semibold tracking-widest mb-8 hover:text-primary-500"
+                    >
+                        What to buy us
+                        <span class="material-icons material-icons-outlined">
+                            arrow_forward
+                        </span>
+                    </a>
+                </div>
             </div>
         `;
     }

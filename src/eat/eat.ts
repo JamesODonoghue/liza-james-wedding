@@ -72,7 +72,7 @@ export class Eat extends LitElement {
 
     render() {
         return html`
-            <div class="max-w-3xl mx-auto px-8">
+            <div class="max-w-3xl mx-auto px-8 py-36">
                 <div
                     class="text-4xl uppercase font-semibold tracking-widest mb-8"
                 >
