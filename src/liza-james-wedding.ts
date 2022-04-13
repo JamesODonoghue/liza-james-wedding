@@ -39,11 +39,11 @@ export class LizaJamesWedding extends LitElement {
         return html`
             <div class="font-body">
                 <div
-                    class="p-6 bg-primary-800 text-xl text-center text-primary-50 fixed w-full"
+                    class="sm:p-6 sm:text-xl p-4 bg-primary-800 text-center text-primary-50 fixed w-full"
                 >
                     More details coming soon!
                 </div>
-                <div class="h-screen mx-auto px-8 flex items-center">
+                <div class="h-screen mx-auto px-8 flex items-center ">
                     <div class="flex flex-col items-center">
                         <div class="grid sm:grid-cols-2 grid-cols-1 gap-8">
                             <div
@@ -82,15 +82,22 @@ export class LizaJamesWedding extends LitElement {
                 ${this.isRsvp ? html` <lj-rsvp></lj-rsvp> ` : ''}
                 <lj-venue></lj-venue>
                 <lj-eat></lj-eat>
-                <div class="max-w-3xl mx-auto px-8 py-36">
-                    <a
-                        href="https://www.blueprintregistry.com/registry/james-odonoghue-wedding-registry-6-25-2022"
-                        class="text-4xl uppercase font-semibold tracking-widest mb-8 hover:text-primary-500"
+                <div class="max-w-3xl mx-auto px-8 pb-64">
+                    <div
+                        class="sm:ext-4xl text-3xl uppercase font-semibold tracking-widest mb-8"
                     >
                         What to buy us
-                        <span class="material-icons material-icons-outlined">
+                    </div>
+                    <a
+                        href="https://www.blueprintregistry.com/registry/james-odonoghue-wedding-registry-6-25-2022"
+                        class="flex align-center text-2xl font-semibold mb-8 hover:text-primary-500"
+                    >
+                        <div class="mr-2">Registry</div>
+                        <div
+                            class="flex items-center material-icons material-icons-outlined"
+                        >
                             arrow_forward
-                        </span>
+                        </div>
                     </a>
                 </div>
             </div>

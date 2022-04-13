@@ -941,6 +941,15 @@ select {
 .pt-64 {
 	padding-top: 16rem;
 }
+.pb-48 {
+	padding-bottom: 12rem;
+}
+.pb-64 {
+	padding-bottom: 16rem;
+}
+.pt-32 {
+	padding-top: 8rem;
+}
 .text-center {
 	text-align: center;
 }
@@ -1151,6 +1160,10 @@ select {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 
+	.sm\:p-6 {
+		padding: 1.5rem;
+	}
+
 	.sm\:text-8xl {
 		font-size: 6rem;
 		line-height: 1;
@@ -1164,5 +1177,10 @@ select {
 	.sm\:text-4xl {
 		font-size: 2.25rem;
 		line-height: 2.5rem;
+	}
+
+	.sm\:text-xl {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
 	}
 }

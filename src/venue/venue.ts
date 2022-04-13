@@ -32,7 +32,7 @@ export class Venue extends LitElement {
             <div class="py-36">
                 <div class="max-w-3xl mx-auto px-8">
                     <div
-                        class="text-4xl uppercase font-semibold tracking-widest mb-8"
+                        class="sm:text-4xl text-3xl uppercase font-semibold tracking-widest mb-8"
                     >
                         Where to stay
                     </div>
@@ -91,7 +91,7 @@ export class Venue extends LitElement {
             </div>
             <div class="max-w-3xl mx-auto px-8 py-36">
                 <div
-                    class="text-4xl uppercase font-semibold tracking-widest mb-8"
+                    class="sm:text-4xl text-3xl uppercase font-semibold tracking-widest mb-8"
                 >
                     What to wear
                 </div>
