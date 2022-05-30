@@ -58,7 +58,11 @@ export class LizaJamesWedding extends LitElement {
                                     June 25, 2022
                                 </div>
                                 <div>Living History Farms</div>
-                                <div>Urbandale, Iowa</div>
+                                <div class="mb-8">Urbandale, Iowa</div>
+                                <div>
+                                    Ceremony starts at 4:30pm at the Church of
+                                    the Land
+                                </div>
                                 <div class="flex mt-8">
                                     <a
                                         href=${this.url}
