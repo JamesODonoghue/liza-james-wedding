@@ -38,11 +38,6 @@ export class LizaJamesWedding extends LitElement {
     render() {
         return html`
             <div class="font-body">
-                <div
-                    class="sm:p-6 sm:text-xl p-4 bg-primary-800 text-center text-primary-50 fixed w-full"
-                >
-                    More details coming soon!
-                </div>
                 <div class="h-screen mx-auto px-8 flex items-center ">
                     <div class="flex flex-col items-center">
                         <div class="grid sm:grid-cols-2 grid-cols-1 gap-8">
