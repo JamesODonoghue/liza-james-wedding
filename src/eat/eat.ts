@@ -66,6 +66,29 @@ export class Eat extends LitElement {
         },
     ];
 
+    @state() pubs = [
+        {
+            name: "Sully's Irish Pub",
+            href: 'http://www.sullysdesmoines.com/',
+            emoji: '🇮🇪',
+        },
+        {
+            name: "Annie's Irish Pub",
+            href: 'http://www.sullysdesmoines.com/',
+            emoji: '🇮🇪',
+        },
+        {
+            name: 'Royal Mile',
+            href: 'https://royalmilebar.com/',
+            emoji: '🇬🇧',
+        },
+        {
+            name: 'Iowa Taproom',
+            href: 'https://iowataproom.com/',
+            emoji: '🍻 🏀 🍔',
+        },
+    ];
+
     createRenderRoot() {
         return this;
     }
@@ -80,6 +103,33 @@ export class Eat extends LitElement {
                 </div>
                 <div class="mb-32">
                     ${this.restaraunts.map(
+                        ({ name, href, emoji }) => html`
+                            <a
+                                href=${href}
+                                class="sm:flex items-center rounded p-4 hover:bg-primary-100"
+                            >
+                                <div class="text-2xl font-semibold sm:mr-8">
+                                    <div
+                                        class="inline-flex items-center text-primary-900"
+                                    >
+                                        <span>${name}</span>
+                                    </div>
+                                    <span class="ml-4">${emoji}</span>
+                                </div>
+                            </a>
+                        `
+                    )}
+                </div>
+            </div>
+
+            <div class="max-w-3xl mx-auto px-8 py-36">
+                <div
+                    class="text-4xl uppercase font-semibold tracking-widest mb-8"
+                >
+                    Where to drink
+                </div>
+                <div class="mb-32">
+                    ${this.pubs.map(
                         ({ name, href, emoji }) => html`
                             <a
                                 href=${href}
